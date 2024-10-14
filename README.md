@@ -14,10 +14,10 @@ so that this data can be accessed programmatically for integration with other sy
 **Acceptance Criteria:**
 
 - [X] A course has a unique `id` and a `name`
-- [ ] An intake has a unique `id`, a `start_date`, and an `end_date`
-- [ ] A course can have multiple intakes associated with it
+- [X] An intake has a unique `id`, a `start_date`, and an `end_date`
+- [X] A course can have multiple intakes associated with it
 - [X] Ability to create/manage courses within the Django Admin interface
-- [ ] Ability to create/manage intakes within the Django Admin interface
+- [X] Ability to create/manage intakes within the Django Admin interface
 - [ ] `/api/admissions/courses/` API endpoint that provides a list of all available courses along with their respective intakes
 - [ ] Access to this endpoint has to be authenticated using [DRF token](https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication)
 - [ ] Unit tests to make sure the endpoint behaves as intended
