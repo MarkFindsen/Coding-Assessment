@@ -1,5 +1,6 @@
 from django.test import TestCase
 
+from ..serializers import CourseSerializer
 
 class CourseSerializerTests(TestCase):
     def test_dummy(self):
