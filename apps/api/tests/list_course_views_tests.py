@@ -5,7 +5,7 @@ from django.urls import reverse
 from datetime import date
 
 from django.contrib.auth import get_user_model
-from ...admission.models import Course, Intake
+from ..model_factories import CourseFactory, IntakeFactory
 
 User = get_user_model()
 
@@ -14,12 +14,12 @@ class ListCoursesTests(APITestCase):
         self.url = reverse('api:list_courses')
         self.user = User.objects.create_user(username='mark', password='password')
 
-        self.course_1 = Course.objects.create(name="CSSE2310")
-        self.course_2 = Course.objects.create(name="DECO1800")
+        self.course_1 = CourseFactory(name="CSSE2310")
+        self.course_2 = CourseFactory(name="DECO1800")
 
-        self.intake_1 = Intake.objects.create(start_date=date(2024, 8, 12), end_date=date(2024, 10, 15), course=self.course_1)
-        self.intake_2 = Intake.objects.create(start_date=date(2023, 2, 1), end_date=date(2024, 1, 1), course=self.course_1)
-        self.intake_3 = Intake.objects.create(start_date=date(2024, 3, 5), end_date=date(2024, 7, 3), course=self.course_2)
+        self.intake_1 = IntakeFactory(start_date='2024-08-12', end_date='2024-10-15', course=self.course_1)
+        self.intake_2 = IntakeFactory(start_date='2023-02-01', end_date='2024-01-01', course=self.course_1)
+        self.intake_3 = IntakeFactory(start_date='2024-03-05', end_date='2024-07-03', course=self.course_2)
 
     def test_get_unauthenticated_user(self):
         response = self.client.get(self.url, {})
@@ -45,7 +45,7 @@ class ListCoursesTests(APITestCase):
         
         # Check that the intakes are serialized correctly
         intake_data = [intake['start_date'] for intake in course_1['intakes']]
-        expected_intakes = [self.intake_1.start_date.isoformat(), self.intake_2.start_date.isoformat()]
+        expected_intakes = [self.intake_1.start_date, self.intake_2.start_date]
         self.assertEqual(intake_data, expected_intakes)
 
         # Validate the second course and its intakes
@@ -53,7 +53,7 @@ class ListCoursesTests(APITestCase):
         self.assertEqual(course_2['name'], self.course_2.name)
 
         intake_data_2 = [intake['start_date'] for intake in course_2['intakes']]
-        expected_intakes_2 = [self.intake_3.start_date.isoformat()]
+        expected_intakes_2 = [self.intake_3.start_date]
         self.assertEqual(intake_data_2, expected_intakes_2)
 
     def test_post_unauthenticated_user(self):
