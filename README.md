@@ -18,9 +18,9 @@ so that this data can be accessed programmatically for integration with other sy
 - [X] A course can have multiple intakes associated with it
 - [X] Ability to create/manage courses within the Django Admin interface
 - [X] Ability to create/manage intakes within the Django Admin interface
-- [ ] `/api/admissions/courses/` API endpoint that provides a list of all available courses along with their respective intakes
-- [ ] Access to this endpoint has to be authenticated using [DRF token](https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication)
-- [ ] Unit tests to make sure the endpoint behaves as intended
+- [X] `/api/admissions/courses/` API endpoint that provides a list of all available courses along with their respective intakes
+- [X] Access to this endpoint has to be authenticated using [DRF token](https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication)
+- [X] Unit tests to make sure the endpoint behaves as intended
 
 If you have any ideas for enhancing your implementation but don't have the time or aren't sure how to achieve them in Django, don't worry.
 You're encouraged to note them as comments in the code or in a separate document.
