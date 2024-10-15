@@ -5,14 +5,14 @@ from django.urls import reverse
 from datetime import date
 
 from django.contrib.auth import get_user_model
-from ..model_factories import CourseFactory, IntakeFactory
+from ..model_factories import CourseFactory, IntakeFactory, UserFactory
 
 User = get_user_model()
 
 class ListCoursesTests(APITestCase):
     def setUp(self):
         self.url = reverse('api:list_courses')
-        self.user = User.objects.create_user(username='mark', password='password')
+        self.user = UserFactory()
 
         self.course_1 = CourseFactory(name="CSSE2310")
         self.course_2 = CourseFactory(name="DECO1800")
